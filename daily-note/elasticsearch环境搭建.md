@@ -1,4 +1,6 @@
 # elasticsearch环境搭建
+
+
 ```shell
 1.系统环境配置ES_HOME  
 2.修改yaml配置数据和日志路径
