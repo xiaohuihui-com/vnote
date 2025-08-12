@@ -12,4 +12,6 @@ curl.exe -XPUT -H 'Content-Type: application/json' -u elastic:NILHPtGtGhRiHs78PA
 elasticsearch-service.bat install
 6.验证密码修改是否成功
 curl.exe -u elastic http://localhost:9200
+7.启动服务
+net start elasticsearch-service-x64
 ```
