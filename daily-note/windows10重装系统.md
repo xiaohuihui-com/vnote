@@ -11,7 +11,10 @@
 api_key="sk-ewaw4lqOcpEbAe4keCgpnwERXPfZFfWpeQEgvyU3W4hvdz4J",
 base_url="https://api.chatanywhere.tech/v1"
 ```
-
+```shell
+https://free.v36.cm
+sk-OOzoX99SjI01lmz4D9D1236d0a8140AeB5AbC290152e0654
+```
 windows10 企业版激活（其他版本未试过）
 ```shell
 # 在cmd以管理员执行下面命令，或者将下面命令复制在文本文档中并保存为*.bat,再以管理员身份执行*.bat文件
