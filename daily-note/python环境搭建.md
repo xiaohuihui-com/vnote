@@ -23,11 +23,10 @@ uv add numpy --default-index https://pypi.tuna.tsinghua.edu.cn/simple
 [[tool.uv.index]]
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 default = true
-
+```
 ```shell
 # python版本下载，临时加速镜像
 uv python install 3.12 --mirror https://gitproxy.click/https://github.com/astral-sh/python-build-standalone/releases/download/ 
-
 ```
 
 ```shell
