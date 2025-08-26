@@ -63,3 +63,67 @@ python-install-mirror = "https://gitproxy.click/https://github.com/astral-sh/pyt
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 default = true
 ```
+
+```shell
+# pytorch不同版本安装，在pyproject.toml中添加下面内容
+[project.optional-dependencies]
+cpu = [
+  "torch>=2.7.0",
+  "torchvision>=0.22.0",
+]
+cu128 = [
+  "torch>=2.7.0",
+  "torchvision>=0.22.0",
+]
+cu124 = [
+  "torch>=2.6.0",
+  "torchvision>=0.21.0",
+]
+
+[tool.uv]
+conflicts = [
+  [
+    { extra = "cpu" },
+    { extra = "cu128" },
+    { extra = "cu124" },
+  ],
+]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cpu", extra = "cpu" },
+  { index = "pytorch-cu128", extra = "cu128" },
+  { index = "pytorch-cu124", extra = "cu124" },
+]
+torchvision = [
+  { index = "pytorch-cpu", extra = "cpu" },
+  { index = "pytorch-cu128", extra = "cu128" },
+  { index = "pytorch-cu124", extra = "cu124" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+```
+```shell
+# 安装切换版本
+uv sync --extra cu124
+```
+
+```shell
+uv add ruff --dev   
+uv run ruff check .
+uv run ruff check . --fix
+uv run ruff format .
+```
