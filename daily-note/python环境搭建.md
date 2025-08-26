@@ -7,7 +7,7 @@
 ### 01.uv 环境配置
 
 ```shell
-# windows安装
+# windows安装,从 PowerShell 运行它（必须以管理员权限运行）：
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 # 指定路径安装
 powershell -ExecutionPolicy ByPass -c {$env:UV_INSTALL_DIR = "D:\uv_manager";irm https://astral.sh/uv/install.ps1 | iex}
@@ -126,4 +126,7 @@ uv add ruff --dev
 uv run ruff check .
 uv run ruff check . --fix
 uv run ruff format .
+
+uv tool install black
+uv tool install black .
 ```
