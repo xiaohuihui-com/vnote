@@ -33,6 +33,9 @@ uv python install 3.12 --mirror https://gitproxy.click/https://github.com/astral
 # windows永久镜像配置
 $env:UV_DEFAULT_INDEX = "https://pypi.tuna.tsinghua.edu.cn/simple"
 $env:UV_PYTHON_INSTALL_MIRROR = "https://gitproxy.click/https://github.com/astral-sh/python-build-standalone/releases/download/"
+$env:UV_PYTHON_INSTALL_MIRROR = "https://gitproxy.click/https://github.com/indygreg/python-build-standalone/releases/download"
+
+
 # PowerShell修改默认存储路径
 $env:UV_CACHE_DIR = "E:\software\uv\uv_cache"
 $env:UV_PYTHON_INSTALL_DIR = "E:\software\uv\uv_python"
@@ -43,7 +46,7 @@ set UV_CACHE_DIR=E:\software\uv\uv_cache
 set UV_PYTHON_INSTALL_DIR=E:\software\uv\uv_python
 set UV_TOOL_DIR=E:\software\uv\uv_tool
 set UV_PYTHON_INSTALL_MIRROR=https://gitproxy.click/https://github.com/astral-sh/python-build-standalone/releases/download/
-
+set UV_PYTHON_INSTALL_MIRROR=https://gitproxy.click/https://github.com/indygreg/python-build-standalone/releases/download
 # PowerShell永久设置
 [Environment]::SetEnvironmentVariable("UV_CACHE_DIR", "E:\software\uv\uv_cache", "User")
 [Environment]::SetEnvironmentVariable("UV_PYTHON_INSTALL_DIR", "E:\software\uv\uv_python", "User")
@@ -122,11 +125,27 @@ uv sync --extra cu124
 ```
 
 ```shell
-uv add ruff --dev   
+uv tool install ruff
 uv run ruff check .
 uv run ruff check . --fix
 uv run ruff format .
 
 uv tool install black
-uv tool install black .
+uv tool run black .
+```
+```shell
+uv cache clean # 从缓存目录中删除所有缓存条目，将其彻底清除。
+uv cache purge # 删除所有未使用的缓存条目
+```
+
+```shell
+setx UV_HOME "D:\Program\Work\uv" # 替换为安装时选择的目录
+setx UV_CACHE_DIR "%UV_HOME%\cache"
+setx UV_CONFIG_FILE "%UV_HOME%\uv.toml"
+setx UV_INSTALL_DIR "%UV_HOME%\bin"
+setx UV_PYTHON_BIN_DIR "%UV_HOME%\bin"
+setx UV_PYTHON_CACHE_DIR "%UV_HOME%\cache"
+setx UV_PYTHON_INSTALL_DIR "%UV_HOME%\python"
+setx UV_TOOL_BIN_DIR "%UV_HOME%\bin"
+setx UV_TOOL_DIR "%UV_HOME%\tools"
 ```
