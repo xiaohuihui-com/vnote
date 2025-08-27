@@ -63,8 +63,14 @@ uv cache dir
 # C:\Users\Administrator\AppData\Roaming\uv\uv.toml 手动添加配置文件夹
 python-install-mirror = "https://gitproxy.click/https://github.com/astral-sh/python-build-standalone/releases/download/"
 [[index]]
+name = "tsinghua" # 清华源
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 default = true
+
+[[index]]
+name = "aliyun" # 阿里云源
+url = "https://mirrors.aliyun.com/pypi/simple"
+
 ```
 
 ```shell
