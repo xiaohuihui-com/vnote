@@ -29,6 +29,8 @@ cat ~/.ssh/id_ed25519.pub | clip
 # 测试
 ssh -T git@github.com
 ```
+
+
 ```shell
 git remote remove origin
 git remote add origin 
