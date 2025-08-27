@@ -3,6 +3,12 @@
     "files": [
     ],
     "folders": [
+        {
+            "name": "daily-note"
+        },
+        {
+            "name": "work-note"
+        }
     ],
     "id": "1",
     "modified_time": "2025-08-11T06:25:26Z",
