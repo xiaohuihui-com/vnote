@@ -35,7 +35,6 @@ git remote add origin
 git add .
 git status
 git commit -m "update"
-
 git push -u origin main # 第一次push不知道上游分支是哪个，所以要加-u
 git config --global push.autoSetupRemote true # git 2.37+版本可以自动设置上游分支
 ```
