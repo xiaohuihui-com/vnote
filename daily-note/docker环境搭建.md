@@ -23,8 +23,10 @@ sudo apt-get install -y docker-ce
 
 # 验证 Docker 是否正确安装
 sudo docker --version
+```
 
-# 安装docker compose
+```shell
+# 安装docker-compose(新版本可不用，docker中集成docker compose,没有横线)
 # 下载最新版本的 Docker Compose（请检查是否有更新版本）
 sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K.*\d')" /usr/local/bin/docker-compose
 
@@ -33,53 +35,30 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 # 验证安装是否成功
 docker-compose --version
-- sudo apt-get update
-- sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-- sudo apt-get update
-- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-- sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-- sudo apt-get update
-- sudo apt-get install docker-ce
-- sudo docker --version
+```
 
+```shell
+# 配置镜像源
 sudo vim /etc/docker/daemon.json
 {
-    "registry-mirrors": [
-		"https://docker.1ms.run",
-        "https://docker.xuanyuan.me",
-    ]
+  "registry-mirrors": [
+    "https://docker.1ms.run",
+    "https://docker.1panel.live",
+    "https://mirror.ccs.tencentyun.com",
+    "https://docker.m.daocloud.io",
+    "https://hub.rat.dev"
+  ]
 }
-
+# 重启配置生效
 sudo usermod -aG docker $USER
 newgrp docker
-sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
 sudo systemctl restart docker
 sudo docker info
-
-- sudo apt-get update
-- sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-- sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-- sudo apt-get update
-- sudo apt-get install docker-ce
-- sudo docker --version
-
-sudo vim /etc/docker/daemon.json
-{
-    "registry-mirrors": [
-        "https://docker.xuanyuan.me",
-        "https://docker.xuanyuan.me",
-        "https://docker.1ms.run",
-        "https://docker.xuanyuan.me"
-    ]
-}
-sudo systemctl restart docker
-sudo docker info
-docker pull mysql:5.7
-docker run --name mysql57 -v /my/own/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=1234 -d -p 3306:3306 mysql:5.7
+```
 
 
-
+```shell
 # 安装mysql
 docker pull mysql:5.7
 docker run --name mysql57 -v /my/own/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d -p 3306:3306 mysql:5.7
@@ -93,8 +72,37 @@ docker run -d --name elasticsearch -p 9200:9200 -p 9300:9300 -e "discovery.type=
 # 安装nginx
 docker pull nginx
 docker run --name nginx -p 8080:80 -d nginx
-
 # 安装jdk17
 docker pull openjdk:17
+```
+
+## 一键部署
+### 目录结构
+```shell
+your-project/
+├── docker-compose.yml
+├── mysql/
+│   ├── data/
+│   └── conf/
+├── redis/
+├── elasticsearch/
+│   └── data/
+├── nginx/
+│   ├── html/
+│   ├── conf/
+│   └── logs/
+└── app/          # 可选：放你的 jar 包
+```
+### 创建目录
+```shell
+mkdir -p mysql/data mysql/conf \
+         redis \
+         elasticsearch/data \
+         nginx/html nginx/conf nginx/logs \
+         app
+```
+
+### 启动所有服务
+```shell
 
 ```
